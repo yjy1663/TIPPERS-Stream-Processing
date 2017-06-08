@@ -1,0 +1,31 @@
+
+Test Cases
+1 
+SELECT count(*) FROM  observation_stream obs  RANGE  1 minutes SLIDE 1 minute
+
+2 
+SELECT * FROM  observation_stream obs  RANGE  5 minutes SLIDE 2 minute
+
+3 
+SELECT * FROM   obs   where sensor_id = "3141-clwb-1100"  RANGE  5 minutes SLIDE 2 minute
+
+4 
+SELECT * FROM   obs   where payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6"  RANGE  5 minutes SLIDE 5 minute
+
+5 
+select count(*) from obs  group by sensor_id range 4 minute slide 1 minutes
+
+6 
+SELECT count(*) FROM   obs   where payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6"  RANGE  5 minutes SLIDE 5 minute
+
+7 
+ELECT count(*) FROM   obs   where payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6" and id = "24249246" RANGE  5 minutes SLIDE 5 minute
+
+8 
+SELECT id, payload FROM   obs   where payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6" and id = "24249246" RANGE  5 minutes SLIDE 4 minute duration 1000000
+
+9 
+SELECT count(*) FROM  sd obs  where payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6" or payload.client_id = "77fcd1c091bd0d44f58c6c6428c12cb6943d971d" group by payload.client_id RANGE  5 minutes SLIDE 4 minute duration 1000000
+
+10 
+select window, timeStamp from sdf where id = "24249395" and payload.client_id = "265d241b2d578200a0aae32805af846d9c8aded6" range 10 seconds slide 5 seconds
